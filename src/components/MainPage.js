@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 // import {nanoid} from "nanoid";
-import data1 from "./data1.json";
+// import data1 from "./data1.json";
 import Hero from "./Hero";
 import imdb from "../assets/imdb.svg";
 import tomato from "../assets/tomato.svg";
+import heart from "../assets/Heart.svg";
 import SearchResults from "./SearchResults";
 import Details from "./Details";
 
@@ -58,7 +59,7 @@ export default function MainPage() {
         setMovieData(response.data.results);
       }).catch(error => {
         console.log("An error occurred: ", error);
-        return `An error occurred: ${error}`;
+        return `An error occurred: ${error.message}`;
       });
 
   }
@@ -113,6 +114,8 @@ export default function MainPage() {
         .then(response => {
           console.log("Details data", response.data);
           setDetailsData(response.data);
+        }).catch(error => {
+          return "An error occurred. Reload the page and try again.";
         })
     }
 
@@ -124,6 +127,7 @@ export default function MainPage() {
         key={movie.id}
         onClick={showDetails}
       >
+        <img src={heart} alt="heart icon" className="heart-icon"/>
         <img 
           src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
           alt="movie poster"
@@ -163,6 +167,7 @@ export default function MainPage() {
 
   });
 
+
   return (
     <>
     
@@ -177,7 +182,7 @@ export default function MainPage() {
         <section id="featured">
           <h2>Featured Movie</h2>
 
-          <div className="card-container">
+          <div className="cards-container">
             {count === 0 
               ? mainElems 
               : <SearchResults 

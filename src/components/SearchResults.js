@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import heart from "../assets/Heart.svg";
+
 
 export default function SearchResults({searchResults, imdb, tomato, setDetailsData}) {
 
@@ -32,6 +34,7 @@ export default function SearchResults({searchResults, imdb, tomato, setDetailsDa
         key={movie.id}
         onClick={showDetails}
       >
+        <img src={heart} alt="heart icon" className="heart-icon"/>
         <img 
           src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
           alt="movie poster"
