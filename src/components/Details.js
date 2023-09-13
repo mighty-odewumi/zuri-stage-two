@@ -4,9 +4,31 @@ import projector from "../assets/Movie Projector.png";
 import tv from "../assets/TV Show.png";
 import star from "../assets/Star.png";
 import list from "../assets/List.png";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
+export default function Details() {
 
-export default function Details({detailsData}) {
+  const [detailsData, setDetailsData] = useState(null);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    const detailsURL = `https://api.themoviedb.org/3/movie/${id}?api_key=4dff3a4e1dceb79ac72e663e4c9d5f26`;
+
+    axios.get(detailsURL)
+      .then(response => {
+        console.log("Details data", response.data);
+        setDetailsData(response.data);
+      }).catch(error => {
+        return "An error occurred. Reload the page and try again.";
+      })
+  }, [id])
+
+  if (!detailsData) {
+    return "Fetching Details";
+  }
 
   return (
     <div id="details">
