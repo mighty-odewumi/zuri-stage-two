@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 // import {nanoid} from "nanoid";
-// import data1 from "./data1.json";
+import data1 from "./data1.json";
 import Hero from "./Hero";
 import imdb from "../assets/imdb.svg";
 import tomato from "../assets/tomato.svg";
@@ -23,6 +23,10 @@ export default function MainPage() {
 
   const [detailsData, setDetailsData] = useState(null);
 
+  const [flipColor, setFlipColor] = useState(false);
+
+  const [clickedCard, setClickedCard] = useState(false);
+
   const firstURL = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=4dff3a4e1dceb79ac72e663e4c9d5f26";
 
   const searchURL = `https://api.themoviedb.org/3/search/movie?query=${searchInput.search}&api_key=4dff3a4e1dceb79ac72e663e4c9d5f26`;
@@ -38,8 +42,6 @@ export default function MainPage() {
       }
     ));
   }
-
-  console.log(searchInput);
 
 
   // Called on click on the search button or enter key
@@ -76,6 +78,10 @@ export default function MainPage() {
         return `An error occurred: ${error}`;
       })
   }
+
+
+ 
+  console.log(flipColor);
 
   console.log(movieData);
 
@@ -119,6 +125,16 @@ export default function MainPage() {
         })
     }
 
+    
+    // Tracks color change on favorite
+    function handleFavClick() {
+      setFlipColor(!flipColor); 
+      setClickedCard(movie.id);
+    }
+
+
+    // Need to fix a bug that makes the heart icon of any saved to change when you click on another one.
+
 
     return (
       <div 
@@ -127,7 +143,14 @@ export default function MainPage() {
         key={movie.id}
         onClick={showDetails}
       >
-        <img src={heart} alt="heart icon" className="heart-icon"/>
+        <img 
+          src={heart} 
+          alt="heart icon"
+          key={movie.id}
+          onClick={handleFavClick}
+          className={`heart-icon ${flipColor && clickedCard === movie.id ? "saved-movie" : ""}`}
+        />
+
         <img 
           src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
           alt="movie poster"
@@ -170,31 +193,30 @@ export default function MainPage() {
 
   return (
     <>
-    
       {detailsData
         ? <Details detailsData={detailsData}/> 
         : <div id="main-page">
-        <Hero 
-          handleChange={handleChange} 
-          handleSubmit={handleSubmit}
-        />
+            <Hero 
+              handleChange={handleChange} 
+              handleSubmit={handleSubmit}
+            />
 
-        <section id="featured">
-          <h2>Featured Movie</h2>
+            <section id="featured">
+              <h2>Featured Movie</h2>
 
-          <div className="cards-container">
-            {count === 0 
-              ? mainElems 
-              : <SearchResults 
-                  imdb={imdb}
-                  tomato={tomato}
-                  searchResults={searchResults}
-                  setDetailsData={setDetailsData}
-                />
-            }
+              <div className="cards-container">
+                {count === 0 
+                  ? mainElems 
+                  : <SearchResults 
+                      imdb={imdb}
+                      tomato={tomato}
+                      searchResults={searchResults}
+                      setDetailsData={setDetailsData}
+                    />
+                }
 
-          </div>
-        </section>
+              </div>
+            </section>
           </div>
       }
     </>

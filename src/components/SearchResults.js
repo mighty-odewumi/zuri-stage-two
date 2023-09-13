@@ -5,6 +5,10 @@ import heart from "../assets/Heart.svg";
 
 export default function SearchResults({searchResults, imdb, tomato, setDetailsData}) {
 
+  const [flipColor, setFlipColor] = useState(false);
+
+  const [clickedCard, setClickedCard] = useState(null);
+
   if (!searchResults) {
     return "Fetching Data";
   }
@@ -18,7 +22,7 @@ export default function SearchResults({searchResults, imdb, tomato, setDetailsDa
   const searchElems = slicedResults.map(movie => {
 
     const detailsURL = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=4dff3a4e1dceb79ac72e663e4c9d5f26`;
-
+    
     // Shows each movie's details
     function showDetails() {
       axios.get(detailsURL)
@@ -27,6 +31,13 @@ export default function SearchResults({searchResults, imdb, tomato, setDetailsDa
           setDetailsData(response.data);
         })
     }
+
+    // Tracks color change on favorite
+    function handleFavClick() {
+      setFlipColor(!flipColor); 
+      setClickedCard(movie.id);
+    }
+
     return (
       <div 
         className="card" 
@@ -34,7 +45,13 @@ export default function SearchResults({searchResults, imdb, tomato, setDetailsDa
         key={movie.id}
         onClick={showDetails}
       >
-        <img src={heart} alt="heart icon" className="heart-icon"/>
+        <img
+          src={heart} 
+          alt="heart icon" 
+          onClick={handleFavClick}
+          className={`heart-icon ${flipColor && clickedCard === movie.id ? "saved-movie" : ""}`}
+        />
+        
         <img 
           src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
           alt="movie poster"
