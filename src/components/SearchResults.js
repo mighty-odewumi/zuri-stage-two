@@ -49,7 +49,7 @@ export default function SearchResults({searchResults, imdb, tomato, setDetailsDa
           src={heart} 
           alt="heart icon" 
           onClick={handleFavClick}
-          className={`heart-icon ${flipColor && clickedCard === movie.id ? "saved-movie" : ""}`}
+          className={`heart-icon ${clickedCard === movie.id ? "saved-movie" : ""}`}
         />
         
         <img 

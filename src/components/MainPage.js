@@ -148,7 +148,7 @@ export default function MainPage() {
           alt="heart icon"
           key={movie.id}
           onClick={handleFavClick}
-          className={`heart-icon ${flipColor && clickedCard === movie.id ? "saved-movie" : ""}`}
+          className={`heart-icon ${clickedCard === movie.id ? "saved-movie" : ""}`}
         />
 
         <img 
