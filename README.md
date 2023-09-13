@@ -15,4 +15,4 @@ Movie site that fetches the top rated movies from the TMDB API endpoint. It also
    
 # Deployment
 
-The site is live at https://moviebox.vercel.app
+The site is live at https://moviebox-five.vercel.app
