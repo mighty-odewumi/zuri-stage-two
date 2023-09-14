@@ -6,6 +6,8 @@ import SearchResults from "./SearchResults";
 import imdb from "../assets/imdb.svg";
 import tomato from "../assets/tomato.svg";
 import heart from "../assets/Heart.svg";
+import placeholder from "../assets/placeholder.jpg";
+
 
 export default function MainPage() {
 
@@ -23,11 +25,13 @@ export default function MainPage() {
 
   const [clickedCard, setClickedCard] = useState(false);
 
+  const [error, setError] = useState(false);
+
   const firstURL = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=4dff3a4e1dceb79ac72e663e4c9d5f26";
 
   const searchURL = `https://api.themoviedb.org/3/search/movie?query=${searchInput.search}&api_key=4dff3a4e1dceb79ac72e663e4c9d5f26`;
 
-  
+
   // Gets the value being typed into the search bar
   function handleChange(e) {
     const {name, value} = e.target;
@@ -57,9 +61,8 @@ export default function MainPage() {
         setMovieData(response.data.results);
       }).catch(error => {
         console.log("An error occurred: ", error.message);
-        return `An error occurred: ${error.message}`;
+        setError(true)
       });
-
   }
 
   
@@ -71,12 +74,10 @@ export default function MainPage() {
         setSearchResults(response.data.results);
       }).catch(error => {
         console.log("An error occurred: ", error);
-        return `An error occurred: ${error}`;
+        setError(true);
       })
   }
 
-
-  // console.log(flipColor);
 
   console.log(movieData);
 
@@ -98,24 +99,31 @@ export default function MainPage() {
   }, [count])
 
 
-  if (!movieData) {
-    return <h1 className="error">Fetching Data</h1>;
+  if (error) {
+    return <h2 className="error">An error occurred! Please check your network connection and try again.</h2>;
   }
   
 
+  if (!movieData) {
+    return <h1 className="error">Fetching Data</h1>;
+  }
+
+  
   const slicedResults = movieData.slice(0, 10);
 
   const mainElems = slicedResults.map(movie => {
 
     // Tracks color change on favorite
     function handleFavClick() {
-      // setFlipColor(!flipColor); 
       setClickedCard(movie.id);
     }
 
     const year = movie.release_date.split("-")[0];
 
-    // Need to fix a bug that makes the heart icon of any saved to change when you click on another one.
+    const randomRating = Math.floor(Math.random() * 100);
+    console.log(randomRating);
+
+    // Need to fix a bug that makes the heart icon of any saved to change when you click on another one. That is, you can only save one favorite.
 
     return (
       <Link to={`/movies/${movie.id}`}>
@@ -132,7 +140,7 @@ export default function MainPage() {
           />
 
           <img 
-            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
+            src={movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}` : placeholder} 
             alt="movie poster"
             className="card--img" 
             data-testid="movie-poster"
@@ -151,7 +159,7 @@ export default function MainPage() {
                 className="rating-logo"
               />
               <span className="rating-text rating-text--featured">
-                86/100
+                {randomRating}/100
               </span>
             </p>
 
@@ -162,7 +170,7 @@ export default function MainPage() {
                 className="rating-logo"
               />
               <span className="rating-text">
-                97%
+                {randomRating}%
               </span>
             </p>
           </div>

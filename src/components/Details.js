@@ -1,6 +1,5 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
 import axios from "axios";
 import logo2 from "../assets/logo2.svg";
 import home from "../assets/Home.png";
@@ -21,30 +20,28 @@ export default function Details() {
 
   useEffect(() => {
 
-    const isError = id === undefined;
-
     const detailsURL = `https://api.themoviedb.org/3/movie/${id}?api_key=4dff3a4e1dceb79ac72e663e4c9d5f26`;
 
-    if (isError) {
-      setErrorOccurred(true);
-    }
 
     axios.get(detailsURL)
       .then(response => {
         console.log("Details data", response.data);
         setDetailsData(response.data);
       }).catch(error => {
-        return "An error occurred. Reload the page and try again.";
+        console.log(error);
+       setErrorOccurred(true);
       })
   }, [id])
+
+  
+  if (errorOccurred) {
+    return <h2 className="error">An error occurred! Please check your network connection and try again.</h2>;
+  }
 
   if (!detailsData) {
     return <h2 className="error">Fetching Details</h2>;
   }
 
-  if (errorOccurred) {
-    return <Redirect to="/error" />;
-  }
 
   return (
     <div id="details">
@@ -52,20 +49,27 @@ export default function Details() {
         <img src={logo2} alt="logo" className="details-logo" />
 
         <div id="sidebar-links">
-          <div className="link">
-            <img src={home} alt="home icon" />
-            <span>Home</span>
-          </div>
+          <Link to="/" >
+            <div className="link">
+              <img src={home} alt="home icon" />
+              <span>Home</span>
+            </div>
+          </Link>
+          
+          <Link to={`/movies/${id}`}>
+            <div className="link active">
+              <img src={projector} alt="projector icon" />
+              <span>Movies</span>
+            </div>
+          </Link>
 
-          <div className="link active">
-            <img src={projector} alt="projector icon" />
-            <span>Movies</span>
-          </div>
-
-          <div className="link">
-            <img src={tv} alt="tv icon" />
-            <span>TV Series</span>
-          </div>
+          <Link to="/error">
+            <div className="link">
+              <img src={tv} alt="tv icon" />
+              <span>TV Series</span>
+            </div>
+          </Link>
+          
 
           <div className="banner">
             <h3>Play movie quizzes and earn free tickets</h3>
@@ -74,10 +78,13 @@ export default function Details() {
             <button>Start playing</button>
           </div>
 
-          <div className="link">
-            <img src={logout} alt="logout icon" />
-            <span>Logout</span>
-          </div>
+          <Link to="/">
+            <div className="link">
+              <img src={logout} alt="logout icon" />
+              <span>Logout</span>
+            </div>
+          </Link>
+          
         </div>
       </section>
 

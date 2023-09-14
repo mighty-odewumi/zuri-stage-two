@@ -275,6 +275,12 @@ a {
   margin-right: 10px;
 }
 
+@media screen and (max-width: 500px) {
+  .movie-info-badges-left {
+    flex-wrap: wrap;
+  }
+}
+
 @media screen and (min-width: 700px) {
 
   #hero, header {
