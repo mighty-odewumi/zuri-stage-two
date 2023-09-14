@@ -8,6 +8,7 @@ import tv from "../assets/TV Show.png";
 import star from "../assets/Star.png";
 import list from "../assets/List.png";
 import logout from "../assets/Logout.png";
+import calendar from "../assets/Calendar.png";
 
 export default function Details() {
 
@@ -95,7 +96,7 @@ export default function Details() {
             <p 
               data-testid="movie-runtime" className="badge-info-bold"
             >
-              {detailsData.runtime}
+              {detailsData.runtime}m
             </p>
           </div>
 
@@ -119,11 +120,12 @@ export default function Details() {
 
           <div className="viewmore">
             <button>
+              <img src={calendar} alt="calendar icon" className="viewmore-icon"/>
               See Showtimes
             </button>
 
             <button>
-              <img src={list} alt="list icon" />
+              <img src={list} alt="list icon" className="viewmore-icon"/>
               More watch options
             </button>
           </div>

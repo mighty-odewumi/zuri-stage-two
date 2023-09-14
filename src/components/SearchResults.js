@@ -51,7 +51,7 @@ export default function SearchResults({searchResults, imdb, tomato}) {
           <p data-testid="movie-release-date">{movie.release_date}
           </p>
 
-          <div className="rating-box rating-box--featured">
+          <div className="rating-box--featured">
             <p>
               <img src={imdb} alt="imdb logo" />
               <span className="rating-text rating-text--featured">

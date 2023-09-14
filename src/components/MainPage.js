@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 import Hero from "./Hero";
+import SearchResults from "./SearchResults";
 import imdb from "../assets/imdb.svg";
 import tomato from "../assets/tomato.svg";
 import heart from "../assets/Heart.svg";
-import SearchResults from "./SearchResults";
-import {Link} from "react-router-dom";
 
 export default function MainPage() {
 
@@ -19,7 +19,7 @@ export default function MainPage() {
 
   const [searchResults, setSearchResults] = useState(null);
 
-  const [flipColor, setFlipColor] = useState(false);
+  // const [flipColor, setFlipColor] = useState(false);
 
   const [clickedCard, setClickedCard] = useState(false);
 
@@ -76,7 +76,7 @@ export default function MainPage() {
   }
 
 
-  console.log(flipColor);
+  // console.log(flipColor);
 
   console.log(movieData);
 
@@ -99,7 +99,7 @@ export default function MainPage() {
 
 
   if (!movieData) {
-    return "Fetching Data";
+    return <h1 className="error">Fetching Data</h1>;
   }
   
 
@@ -109,12 +109,11 @@ export default function MainPage() {
 
     // Tracks color change on favorite
     function handleFavClick() {
-      setFlipColor(!flipColor); 
+      // setFlipColor(!flipColor); 
       setClickedCard(movie.id);
     }
 
     const year = movie.release_date.split("-")[0];
-    console.log(year);
 
     // Need to fix a bug that makes the heart icon of any saved to change when you click on another one.
 
@@ -177,29 +176,28 @@ export default function MainPage() {
 
   return (
     <>
-        <div id="main-page">
-            <Hero 
-              handleChange={handleChange} 
-              handleSubmit={handleSubmit}
-            />
+      <div id="main-page">
+          <Hero 
+            handleChange={handleChange} 
+            handleSubmit={handleSubmit}
+          />
 
-            <section id="featured">
-              <h2>Featured Movie</h2>
+          <section id="featured">
+            <h2>Featured Movie</h2>
 
-              <div className="cards-container">
-                {count === 0 
-                  ? mainElems 
-                  : <SearchResults 
-                      imdb={imdb}
-                      tomato={tomato}
-                      searchResults={searchResults}
-                    />
-                }
+            <div className="cards-container">
+              {count === 0 
+                ? mainElems 
+                : <SearchResults 
+                    imdb={imdb}
+                    tomato={tomato}
+                    searchResults={searchResults}
+                  />
+              }
 
-              </div>
-            </section>
-        </div>
-      
+            </div>
+          </section>
+      </div>
     </>
   )
 }
