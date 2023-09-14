@@ -7,6 +7,7 @@ Movie site that fetches the top rated movies from the TMDB API endpoint. It also
 * React
 * Pure CSS
 * The Movie Database API
+* React Router
 
 # Setup
 
