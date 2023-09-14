@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import logo2 from "../assets/logo2.svg";
 import home from "../assets/Home.png";
@@ -13,6 +14,8 @@ import calendar from "../assets/Calendar.png";
 export default function Details() {
 
   const [detailsData, setDetailsData] = useState(null);
+
+  const [errorOccurred, setErrorOccurred] = useState(true);
 
   const { id } = useParams();
 
@@ -30,6 +33,10 @@ export default function Details() {
 
   if (!detailsData) {
     return <h2 className="error">Fetching Details</h2>;
+  }
+
+  if (errorOccurred) {
+    return <Redirect to="/error" />;
   }
 
   return (
@@ -96,7 +103,7 @@ export default function Details() {
             <p 
               data-testid="movie-runtime" className="badge-info-bold"
             >
-              {detailsData.runtime}m
+              {detailsData.runtime}
             </p>
           </div>
 
@@ -133,7 +140,6 @@ export default function Details() {
         </div>
         
       </section>
-      
     </div>
   )
 }
