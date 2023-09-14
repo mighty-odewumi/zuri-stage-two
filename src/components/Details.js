@@ -15,12 +15,19 @@ export default function Details() {
 
   const [detailsData, setDetailsData] = useState(null);
 
-  const [errorOccurred, setErrorOccurred] = useState(true);
+  const [errorOccurred, setErrorOccurred] = useState(false);
 
   const { id } = useParams();
 
   useEffect(() => {
+
+    const isError = id === undefined;
+
     const detailsURL = `https://api.themoviedb.org/3/movie/${id}?api_key=4dff3a4e1dceb79ac72e663e4c9d5f26`;
+
+    if (isError) {
+      setErrorOccurred(true);
+    }
 
     axios.get(detailsURL)
       .then(response => {
