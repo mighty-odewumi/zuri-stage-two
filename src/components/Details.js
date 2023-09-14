@@ -1,12 +1,13 @@
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import logo2 from "../assets/logo2.svg";
 import home from "../assets/Home.png";
 import projector from "../assets/Movie Projector.png";
 import tv from "../assets/TV Show.png";
 import star from "../assets/Star.png";
 import list from "../assets/List.png";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import logout from "../assets/Logout.png";
 
 export default function Details() {
 
@@ -27,7 +28,7 @@ export default function Details() {
   }, [id])
 
   if (!detailsData) {
-    return "Fetching Details";
+    return <h2 className="error">Fetching Details</h2>;
   }
 
   return (
@@ -48,7 +49,19 @@ export default function Details() {
 
           <div className="link">
             <img src={tv} alt="tv icon" />
-            <span>TV Shows</span>
+            <span>TV Series</span>
+          </div>
+
+          <div className="banner">
+            <h3>Play movie quizzes and earn free tickets</h3>
+            <p>50k people are playing now</p>
+
+            <button>Start playing</button>
+          </div>
+
+          <div className="link">
+            <img src={logout} alt="logout icon" />
+            <span>Logout</span>
           </div>
         </div>
       </section>
@@ -69,11 +82,15 @@ export default function Details() {
               {detailsData.title}
             </h3>
 
+            <span>•</span>
+
             <p 
               data-testid="movie-release-date" className="badge-info-bold"
             >
               {detailsData.release_date}
             </p>
+
+            <span>•</span>
 
             <p 
               data-testid="movie-runtime" className="badge-info-bold"
@@ -84,7 +101,12 @@ export default function Details() {
 
           <div className="movie-info-badges-right">
             <img src={star} alt="star icon" />
-            <p>{Math.floor(detailsData.vote_average)}/{Math.floor(detailsData.vote_count)}</p>
+            <p>
+              <span>
+                {Math.floor(detailsData.vote_average)}&nbsp;
+              </span> 
+              | {Math.floor(detailsData.vote_count)}
+            </p>
           </div>
         </div>
 

@@ -113,6 +113,9 @@ export default function MainPage() {
       setClickedCard(movie.id);
     }
 
+    const year = movie.release_date.split("-")[0];
+    console.log(year);
+
     // Need to fix a bug that makes the heart icon of any saved to change when you click on another one.
 
     return (
@@ -136,6 +139,7 @@ export default function MainPage() {
             data-testid="movie-poster"
             loading="lazy"
           />
+          <span className="country-year">USA, {year}</span>
           <h3 data-testid="movie-title">{movie.title}</h3>
           <p data-testid="movie-release-date">{movie.release_date}
           </p>
@@ -163,6 +167,8 @@ export default function MainPage() {
               </span>
             </p>
           </div>
+
+          <span className="genre">Action, adventure</span>
         </div>
       </Link>
     )
