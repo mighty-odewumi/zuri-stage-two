@@ -1,14 +1,14 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import logo2 from "../assets/logo2.svg";
+// import logo2 from "../assets/logo2.svg";
 import home from "../assets/Home.png";
 import projector from "../assets/Movie Projector.png";
 import tv from "../assets/TV Show.png";
 import star from "../assets/Star.png";
 import list from "../assets/List.png";
 import logout from "../assets/Logout.png";
-import placeholder from "../assets/placeholder.jpg";
+// import placeholder from "../assets/placeholder.jpg";
 
 export default function Details() {
 
@@ -44,7 +44,7 @@ export default function Details() {
   return (
     <div id="details">
       <section id="sidebar">
-        <img src={logo2} alt="logo" className="details-logo" />
+        <div className="details-logo"></div>
 
         <div id="sidebar-links">
           <Link to="/" >
@@ -144,10 +144,12 @@ export default function Details() {
 
             <button>
               <img src={list} alt="list icon" className="viewmore-icon"/>
+
+              <div className="viewmore-icon"></div>
               More watch options
             </button>
 
-            <img src={placeholder} alt="viewmore illustration" className="viewmore-img"/>
+            <div className="viewmore-img"></div>
           </div>
         </div>
         
