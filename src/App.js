@@ -7,7 +7,7 @@ import Error from "./components/Error";
 export default function App() {
   return (
     <>
-      <Router>
+      <Router basename="/">
         <Switch>
           <Route exact path='/' component={MainPage}/>
           <Route path="/movies/:id" component={Details} />
