@@ -8,7 +8,7 @@ import tv from "../assets/TV Show.png";
 import star from "../assets/Star.png";
 import list from "../assets/List.png";
 import logout from "../assets/Logout.png";
-import calendar from "../assets/Calendar.png";
+import placeholder from "../assets/placeholder.jpg";
 
 export default function Details() {
 
@@ -21,7 +21,6 @@ export default function Details() {
   useEffect(() => {
 
     const detailsURL = `https://api.themoviedb.org/3/movie/${id}?api_key=4dff3a4e1dceb79ac72e663e4c9d5f26`;
-
 
     axios.get(detailsURL)
       .then(response => {
@@ -41,7 +40,6 @@ export default function Details() {
   if (!detailsData) {
     return <h2 className="error">Fetching Details</h2>;
   }
-
 
   return (
     <div id="details">
@@ -96,7 +94,7 @@ export default function Details() {
           data-testid="movie-poster"
           loading="lazy"
         />
-
+        
         <div className="movie-info-badges">
 
           <div className="movie-info-badges-left">
@@ -141,7 +139,6 @@ export default function Details() {
 
           <div className="viewmore">
             <button>
-              <img src={calendar} alt="calendar icon" className="viewmore-icon"/>
               See Showtimes
             </button>
 
@@ -149,8 +146,9 @@ export default function Details() {
               <img src={list} alt="list icon" className="viewmore-icon"/>
               More watch options
             </button>
+
+            <img src={placeholder} alt="viewmore illustration" className="viewmore-img"/>
           </div>
-          
         </div>
         
       </section>

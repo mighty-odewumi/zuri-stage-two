@@ -94,6 +94,10 @@ input[type="search"]:focus {
   margin-bottom: 24px;
 }
 
+button {
+  cursor: pointer;
+}
+
 #hero > button {
   background-color: tomato;
   color: white;
@@ -175,8 +179,8 @@ a {
 
 .details-logo {
   width: 100px;
-  margin-left: 24px;
-  margin-top: 24px;
+  margin: 24px;
+
 }
 
 #sidebar-links {
@@ -191,16 +195,35 @@ a {
   align-items: center;
 }
 
+.link:hover, .link:focus {
+  background-color: rgb(236, 226, 226);
+  transition: .7s ease-in-out;
+  cursor: pointer;
+}
+
 .link span {
   margin-right: 10px;
+  color: black;
 }
 
 .active {
   background: rgb(245, 237, 237);
+  color: black;
+  font-weight: bolder;
 }
 
 .banner {
   display: none;
+}
+
+.banner button {
+  font-weight: bold;
+}
+
+.banner button:hover, .banner button:focus {
+  background-color: rgb(231, 163, 163);
+  transition: .5s ease-in;
+  cursor: pointer;
 }
 
 #main-details {
@@ -209,9 +232,10 @@ a {
 }
 
 .details--img {
-  width: 100%;
-  height: 500px;
+  max-width: 100%;
+  height: auto;
   border-radius: 10px;
+  /* -webkit-box-reflect: below; */
 }
 
 .movie-info-badges {
@@ -243,14 +267,19 @@ a {
   font-weight: bold;
 }
 
+.overview p {
+  line-height: 24px;
+}
+
 .overview button {
-  background: tomato;
-  padding: 8px 10px;
+  background: red;
+  padding: 14px 10px;
   border: none;
   border-radius: 10px;
   color: white;
   margin: 24px 0;
   width: 40%;
+  font-weight: bold;
 }
 
 .viewmore {
@@ -258,37 +287,115 @@ a {
   flex-direction: column;
 }
 
-.viewmore button {
-  background-color: tomato;
+.viewmore button:first-child {
+  background-color: red;
   color: white;
+  border: none;
+  padding: 16px 10px;
+}
+
+.viewmore button {
+  color: black;
   border-radius: 10px;
   padding: 8px 10px;
-  border: none;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40%;
+  font-weight: bold;
+}
+
+.viewmore button:last-child {
+  background-color: gray;
+  border: 2px solid black;
 }
 
 .viewmore-icon {
-  margin-right: 10px;
+  margin-right: 4px;
+}
+
+.viewmore-img {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 500px) {
   .movie-info-badges-left {
     flex-wrap: wrap;
   }
+
+  #main-details button, .viewmore-img {
+    width: 70%;
+  }
+}
+
+
+/* Tablet Screens  */
+
+@media screen and (min-width: 600px) {
+  
+  .overview-viewmore {
+    display: flex;
+    gap: 20px;
+  }
+
+  .overview {
+    max-width: 60%;
+    margin-right: auto;
+  }
+
+  .viewmore {
+    width: 100%;
+  }
+
+  .viewmore button {
+    width: 100%;
+  }
+
+  .viewmore-img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media screen and (min-width: 700px) {
+
+  #hero > p {
+    width: 60%;
+  }
+
+  .details--img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+}
+
+/* Desktop Screens */
+
+@media screen and (min-width: 900px) {
+
+  #hero {
+    margin-bottom: 32px;
+  }
 
   #hero, header {
     padding: 32px;
   }
 
+  #hero h1 {
+    font-size: 40px;
+    width: 40%;
+  }
+
   #hero > p {
-    width: 60%;
+    width: 40%;
+  }
+
+  #hero button {
+    margin-bottom: 56px;
   }
 
   #featured {
@@ -322,8 +429,8 @@ a {
   .banner {
     display: block;
     background-color: rgb(245, 237, 237);
-    border-radius: 30px;
-    padding: 24px;
+    border-radius: 20px;
+    padding: 14px;
     margin: 12px;
   }
 
@@ -341,19 +448,4 @@ a {
   #main-details {
     margin-left: 200px;
   }
-
-  .overview-viewmore {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 20px;
-  }
-
-  .overview {
-    width: 70%;
-  }
-
-  .viewmore button {
-    width: 100%;
-  }
 }
-
