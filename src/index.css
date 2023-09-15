@@ -179,8 +179,10 @@ a {
 
 .details-logo {
   width: 100px;
+  height: 24px;
   margin: 24px;
-
+  background: url("assets/logo2.svg") no-repeat;
+  background-size: contain;
 }
 
 #sidebar-links {
@@ -317,8 +319,10 @@ a {
 
 .viewmore-img {
   width: 40%;
-  height: auto;
+  height: 200px;
   border-radius: 10px;
+  background: url("assets/placeholder.jpg") no-repeat;
+  background-size: cover;
 }
 
 @media screen and (max-width: 500px) {
@@ -330,7 +334,6 @@ a {
     width: 70%;
   }
 }
-
 
 /* Tablet Screens  */
 
@@ -356,7 +359,6 @@ a {
 
   .viewmore-img {
     width: 100%;
-    height: auto;
   }
 }
 
