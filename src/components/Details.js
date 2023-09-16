@@ -8,10 +8,10 @@ import tv from "../assets/TV Show.png";
 import star from "../assets/Star.png";
 import list from "../assets/List.png";
 import logout from "../assets/Logout.png";
-// import placeholder from "../assets/placeholder.jpg";
+import placeholder from "../assets/placeholder.jpg";
 
 export default function Details() {
-
+   
   const [detailsData, setDetailsData] = useState(null);
 
   const [errorOccurred, setErrorOccurred] = useState(false);
@@ -88,7 +88,9 @@ export default function Details() {
 
       <section id="main-details">
         <img 
-          src={`https://image.tmdb.org/t/p/original${detailsData.poster_path}`} 
+          src={detailsData.poster_path 
+            ? `https://image.tmdb.org/t/p/original${detailsData.poster_path}`
+            : placeholder} 
           alt="movie poster"
           className="details--img" 
           data-testid="movie-poster"
