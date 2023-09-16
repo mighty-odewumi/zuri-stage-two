@@ -25,6 +25,8 @@ body {
 header {
   display: flex;
   justify-content: space-between;
+  align-self: center;
+  gap: 20px;
 }
 
 .logo {
@@ -37,7 +39,7 @@ form {
   border: 1px solid white;
   display: flex;
   justify-content: space-between;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 
 .search-btn {
@@ -338,6 +340,14 @@ a {
 /* Tablet Screens  */
 
 @media screen and (min-width: 600px) {
+
+  .logo {
+    width: 150px;
+  }
+
+  form {
+    width: 40%;
+  }
   
   .overview-viewmore {
     display: flex;

@@ -15,7 +15,7 @@ export default function Hero({handleChange, handleSubmit}) {
           <input 
             type="search" 
             id="search-bar"
-            placeholder="What movies do you want?"
+            placeholder="Search for a movie"
             name="search"
             onChange={handleChange}
           />
