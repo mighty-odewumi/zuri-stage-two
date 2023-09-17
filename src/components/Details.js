@@ -8,7 +8,7 @@ import tv from "../assets/TV Show.png";
 import star from "../assets/Star.png";
 import list from "../assets/List.png";
 import logout from "../assets/Logout.png";
-import placeholder from "../assets/placeholder.jpg";
+// import placeholder from "assets/placeholder.jpg";
 
 export default function Details() {
    
@@ -44,8 +44,10 @@ export default function Details() {
   return (
     <div id="details">
       <section id="sidebar">
-        <div className="details-logo"></div>
-
+        <Link to="/">
+          <div className="details-logo"></div>
+        </Link>
+        
         <div id="sidebar-links">
           <Link to="/" >
             <div className="link">
@@ -89,8 +91,8 @@ export default function Details() {
       <section id="main-details">
         <img 
           src={detailsData.poster_path 
-            ? `https://image.tmdb.org/t/p/original${detailsData.poster_path}`
-            : placeholder} 
+            ? `https://image.tmdb.org/t/p/original${detailsData.poster_path}` 
+            : "/placeholder.jpg"}
           alt="movie poster"
           className="details--img" 
           data-testid="movie-poster"
