@@ -13,10 +13,6 @@ body {
   color: black;
 }
 
-#hero, header {
-  padding: 24px;
-}
-
 .top-section {
   background: url("./assets/Poster.svg") no-repeat;
   background-size: cover;
@@ -27,6 +23,7 @@ header {
   justify-content: space-between;
   align-self: center;
   gap: 20px;
+  padding: 24px 24px 0;
 }
 
 .logo {
@@ -39,7 +36,6 @@ form {
   border: 1px solid white;
   display: flex;
   justify-content: space-between;
-  /* margin-left: 10px; */
 }
 
 .search-btn {
@@ -59,8 +55,13 @@ input[type="search"]:focus {
   background: transparent;
 }
 
+#hero {
+  padding: 24px 24px 48px;
+}
+
 #hero h1{
-  line-height: 56px;
+  margin-top: 24px;
+  line-height: 48px;
 }
 
 .rating-box {
@@ -117,7 +118,7 @@ a {
 
 #featured {
   color: black;
-  padding: 24px;
+  padding: 24px 24px;
 }
 
 #featured > h2 {
@@ -135,9 +136,10 @@ a {
   position: relative;
   cursor: pointer;
   width: 200px;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  row-gap: 8px;
   color: black;
 }
 
@@ -327,6 +329,23 @@ a {
   background-size: cover;
 }
 
+footer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.foot-socials {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-link {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 500px) {
   .movie-info-badges-left {
     flex-wrap: wrap;
@@ -374,8 +393,24 @@ a {
 
 @media screen and (min-width: 700px) {
 
+  header {
+    padding: 40px 40px 0;
+  }
+
+  #hero {
+    padding: 40px 40px 72px;
+  }
+
+  #hero > h1 {
+    margin-top: 0;
+  }
+
   #hero > p {
     width: 60%;
+  }
+
+  #featured {
+    padding: 40px;
   }
 
   .details--img {
@@ -389,12 +424,12 @@ a {
 
 @media screen and (min-width: 900px) {
 
-  #hero {
-    margin-bottom: 32px;
+  header {
+    padding: 50px 50px 0;
   }
 
-  #hero, header {
-    padding: 32px;
+  #hero {
+    padding: 50px  50px 90px;
   }
 
   #hero h1 {
@@ -406,16 +441,8 @@ a {
     width: 40%;
   }
 
-  #hero button {
-    margin-bottom: 56px;
-  }
-
   #featured {
-    padding: 24px 24px 24px 38px;
-  }
-
-  .cards-container {
-    width: 100%;
+    padding: 50px;
   }
 
   #sidebar {
@@ -459,5 +486,44 @@ a {
 
   #main-details {
     margin-left: 200px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+  header {
+    padding: 60px 60px 0;
+  }
+
+  #hero {
+    padding: 60px;
+  }
+
+  #hero > h1 {
+    margin-top: 0;
+  }
+
+  #featured {
+    padding: 60px;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+  header {
+    padding: 70px 70px 0;
+  }
+
+  #hero {
+    padding: 70px 70px 120px;
+  }
+
+  #featured {
+    padding: 70px;
+  }
+
+  .cards-container {
+    gap: 30px;
   }
 }

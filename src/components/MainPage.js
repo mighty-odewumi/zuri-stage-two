@@ -7,7 +7,10 @@ import imdb from "../assets/imdb.svg";
 import tomato from "../assets/tomato.svg";
 import heart from "../assets/Heart.svg";
 import placeholder from "../assets/placeholder.jpg";
-
+import facebook from "../assets/facebook.svg";
+import twitter from "../assets/twitter.svg";
+import instagram from "../assets/instagram.svg";
+import youtube from "../assets/youtube.svg";
 
 export default function MainPage() {
 
@@ -30,6 +33,9 @@ export default function MainPage() {
   const firstURL = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=4dff3a4e1dceb79ac72e663e4c9d5f26";
 
   const searchURL = `https://api.themoviedb.org/3/search/movie?query=${searchInput.search}&api_key=4dff3a4e1dceb79ac72e663e4c9d5f26`;
+
+  const date = new Date();
+  const year = date.getFullYear();
 
 
   // Gets the value being typed into the search bar
@@ -114,8 +120,9 @@ export default function MainPage() {
   const mainElems = slicedResults.map(movie => {
 
     // Tracks color change on favorite
-    function handleFavClick() {
+    function handleFavClick(e) {
       setClickedCard(movie.id);
+      e.stopPropagation();
     }
 
     const year = movie.release_date.split("-")[0];
@@ -205,6 +212,23 @@ export default function MainPage() {
 
             </div>
           </section>
+
+          <footer>
+            <div className="foot-socials">
+              <img src={facebook} alt="facebook icon" className="footer-icon"/>
+              <img src={instagram} alt="instagram icon" className="footer-icon"/>
+              <img src={twitter} alt="twitter icon" className="footer-icon"/>
+              <img src={youtube} alt="youtube icon" className="footer-icon"/>
+            </div>
+
+            <div className="footer-link error">
+              <span>Conditions of Use</span>
+              <span>Terms of Use</span>
+              <span>Privacy Policy</span>
+            </div>
+
+            <p className="error">&copy; {year} MovieBox by Mighty Odewumi (gr1ntch)</p>
+          </footer>
       </div>
     </>
   )
