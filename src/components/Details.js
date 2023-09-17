@@ -92,7 +92,7 @@ export default function Details() {
         <img 
           src={detailsData.poster_path 
             ? `https://image.tmdb.org/t/p/original${detailsData.poster_path}` 
-            : "/placeholder.jpg"}
+            : "https://images.pexels.com/photos/1261731/pexels-photo-1261731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}
           alt="movie poster"
           className="details--img" 
           data-testid="movie-poster"
