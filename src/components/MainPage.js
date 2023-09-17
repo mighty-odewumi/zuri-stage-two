@@ -128,7 +128,6 @@ export default function MainPage() {
     const year = movie.release_date.split("-")[0];
 
     const randomRating = Math.floor(Math.random() * 100);
-    console.log(randomRating);
 
     // Need to fix a bug that makes the heart icon of any saved to change when you click on another one. That is, you can only save one favorite.
 
@@ -228,6 +227,7 @@ export default function MainPage() {
             </div>
 
             <p className="error">&copy; {year} MovieBox by Mighty Odewumi (gr1ntch)</p>
+            
           </footer>
       </div>
     </>

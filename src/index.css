@@ -334,16 +334,23 @@ footer {
   justify-content: space-between;
   flex-direction: column;
   padding: 24px;
+  text-align: center;
 }
 
-.foot-socials {
-  display: flex;
-  justify-content: space-around;
+.footer-icon {
+  padding: 10px;
 }
 
 .footer-link {
+  text-align: center;
+  font-weight: bold;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  padding-bottom: 24px;
+}
+
+footer > p {
+  text-align: center;
 }
 
 @media screen and (max-width: 500px) {
@@ -353,6 +360,23 @@ footer {
 
   #main-details button, .viewmore-img {
     width: 70%;
+  }
+
+}
+
+@media screen and (min-width: 500px) {
+
+  .footer-icon {
+    padding: 24px;
+  }
+
+  .footer-link {
+    text-align: center;
+    display: inline-block;
+  }
+
+  .footer-link span {
+    padding: 32px;
   }
 }
 
