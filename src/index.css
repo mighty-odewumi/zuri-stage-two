@@ -152,10 +152,6 @@ a {
   padding: 4px;
 }
 
-.heart-icon:hover, .heart-icon:focus {
-  background-color: rgb(32, 79, 141);
-}
-
 .saved-movie {
   background: blue;
 }
